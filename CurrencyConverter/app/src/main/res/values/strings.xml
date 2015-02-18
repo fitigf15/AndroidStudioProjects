@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CurrencyConverter</string>
+    <string name="euro">EUR</string>
+    <string name="dollar">USD</string>
+    <string name="commission">Commission</string>
+    <string name="title">Currency converter</string>
+    <string name="switchEUR_USD">Switch</string>
+    <string name="action_settings">Settings</string>
+</resources>
