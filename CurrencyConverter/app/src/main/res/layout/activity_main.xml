@@ -5,96 +5,167 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/textC"
-            android:text="@string/currency"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:id="@+id/textNc"
-            android:text="@string/nc"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/textWc"
-            android:text="@string/wc"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-    <LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/euro"
-            android:id="@+id/textEuro" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/editEuro"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/textConvertedEuro" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/textEuroWc" />
-    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="4">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/dollar"
-            android:id="@+id/textDollar" />
-
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/editDollar" />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/textConvertedDollar" />
-        <TextView
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayoutEuro">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/euro"
+                android:id="@+id/textEuro"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_weight="2"
+                android:layout_height="0dp"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editEuro"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:gravity="center"
+                android:numeric="decimal" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:ems="10"
+                    android:id="@+id/textConvertedEuro"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:numeric="decimal" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:id="@+id/textEuroWc"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:numeric="decimal"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/textDollarWc" />
+            android:layout_height="fill_parent">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="@string/equals"
+                android:id="@+id/textEquals1"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="60dp"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:text="@string/equals"
+                android:id="@+id/textEquals2"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="60dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="fill_parent"
+            android:id="@+id/linearLayoutDollar">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="@string/dollar"
+                android:id="@+id/textDollar"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:numeric="decimal" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:ems="10"
+                    android:id="@+id/textConvertedDollar"
+                    android:maxLines="1"
+                    android:maxLength="10"
+                    android:gravity="center"
+                    android:numeric="decimal" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:id="@+id/textDollarWc"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:numeric="decimal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_weight="2"
+                android:layout_height="0dp"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editDollar"
+                android:maxLines="1"
+                android:maxLength="10"
+                android:gravity="center" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -106,16 +177,23 @@
         <CheckBox
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:text="@string/commission"
-            android:id="@+id/checkCommission" />
+            android:id="@+id/checkCommission"
+            android:gravity="center" />
 
         <EditText
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/editCommission" />
+            android:id="@+id/editCommission"
+            android:maxLines="10"
+            android:maxWidth="1dp"
+            android:gravity="center"
+            android:numeric="decimal"
+            android:visibility="gone" />
     </LinearLayout>
+
 </LinearLayout>
