@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Convertidor de Moneda</string>
+    <string name="euro">EUR(€)</string>
+    <string name="dollar">USD($)</string>
+    <string name="commission">Aplicar Comissió(%)</string>
+    <string name="title">Convertidor de Moneda</string>
+    <string name="action_settings">Opcions</string>
+    <string name="currency">Moneda</string>
+    <string name="wc">Amb Comissió</string>
+    <string name="nc">Sense Comissió</string>
+    <string name="equals">=</string>
+</resources>
