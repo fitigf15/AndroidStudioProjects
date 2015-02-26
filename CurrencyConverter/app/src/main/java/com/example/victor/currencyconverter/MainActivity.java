@@ -1,9 +1,11 @@
 package com.example.victor.currencyconverter;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import junit.framework.TestCase;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -30,30 +34,13 @@ public class MainActivity extends ActionBarActivity {
         final TextView textNc = (TextView) findViewById(R.id.textNc);
         final TextView textEuroWc = (TextView) findViewById(R.id.textEuroWc);
         final TextView textDollarWc = (TextView) findViewById(R.id.textDollarWc);
+        final TextView textConvertedDollar = (TextView) findViewById(R.id.textConvertedDollar);
+        final TextView textConvertedEuro = (TextView) findViewById(R.id.textConvertedEuro);
         final EditText editDollar = (EditText) findViewById(R.id.editDollar);
         final EditText editEuro = (EditText) findViewById(R.id.editEuro);
         final EditText editCommission = (EditText) findViewById(R.id.editCommission);
         final CheckBox checkCommission = (CheckBox) findViewById(R.id.checkCommission);
-        textWc.setVisibility(View.INVISIBLE);
-        textEuroWc.setVisibility(View.INVISIBLE);
-        textDollarWc.setVisibility(View.INVISIBLE);
-        editCommission.setVisibility(View.INVISIBLE);
-        editDollar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                editEuro.setText(String.valueOf(Double.parseDouble((String) s)*m_euroValue));
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         editEuro.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -62,8 +49,17 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                editDollar.setText(String.valueOf(Double.parseDouble((String) s)/m_euroValue));
+                if (s.length() == 0) {
 
+                    textConvertedDollar.setText("");
+
+                } else {
+                    textConvertedDollar.setText(String.valueOf(Double.parseDouble(editEuro.getText().toString()) * m_euroValue));
+                    if(editCommission.getText().length()>0){
+                        textDollarWc.setText(String.valueOf(Double.parseDouble(textConvertedDollar.getText().toString())+Double.parseDouble(textConvertedDollar.getText().toString())* Double.parseDouble(editCommission.getText().toString())/100));
+                    }
+
+                }
             }
 
             @Override
@@ -71,6 +67,41 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
+
+        editDollar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+
+                    textConvertedEuro.setText("");
+                    textEuroWc.setText("");
+
+                } else {
+                    textConvertedEuro.setText(String.valueOf(Double.parseDouble(editDollar.getText().toString()) / m_euroValue));
+                    if(editCommission.getText().length()>0){
+                        textEuroWc.setText(String.valueOf(Double.parseDouble(textConvertedEuro.getText().toString())+Double.parseDouble(textConvertedEuro.getText().toString())* Double.parseDouble(editCommission.getText().toString())/100));
+                    }
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        editEuro.setText("1", TextView.BufferType.EDITABLE);
+        textConvertedDollar.setText("1.13");
+        editDollar.setVisibility(View.VISIBLE);
+        textWc.setVisibility(View.INVISIBLE);
+        textEuroWc.setVisibility(View.INVISIBLE);
+        textDollarWc.setVisibility(View.INVISIBLE);
+        editCommission.setVisibility(View.INVISIBLE);
         editCommission.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -79,11 +110,29 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(Double.parseDouble((String)s)>0){
-
+                if(s.length()==0){
+                    textWc.setVisibility(View.INVISIBLE);
+                    textEuroWc.setVisibility(View.INVISIBLE);
+                    textDollarWc.setVisibility(View.INVISIBLE);
+                    editCommission.setVisibility(View.INVISIBLE);
                 }else{
 
+                    if (Double.parseDouble(editCommission.getText().toString()) > 0) {
+                        textWc.setVisibility(View.VISIBLE);
+                        textEuroWc.setVisibility(View.VISIBLE);
+                        textDollarWc.setVisibility(View.VISIBLE);
+                        editCommission.setVisibility(View.VISIBLE);
+                        if(editDollar.getText().length()>0){
+                            textEuroWc.setText(String.valueOf(Double.parseDouble(textConvertedEuro.getText().toString())+Double.parseDouble(textConvertedEuro.getText().toString()) * Double.parseDouble(editCommission.getText().toString())/100));
+                        }
+                        if(editEuro.getText().length()>0){
+                            textDollarWc.setText(String.valueOf(Double.parseDouble(textConvertedDollar.getText().toString())+Double.parseDouble(textConvertedDollar.getText().toString())* Double.parseDouble(editCommission.getText().toString())/100));
+                        }
+
+
+                    }
                 }
+
             }
 
             @Override
@@ -99,6 +148,15 @@ public class MainActivity extends ActionBarActivity {
                     textEuroWc.setVisibility(View.VISIBLE);
                     textDollarWc.setVisibility(View.VISIBLE);
                     editCommission.setVisibility(View.VISIBLE);
+                    if(editCommission.getText().length()>0){
+                        if(editDollar.getText().length()>0){
+                            textEuroWc.setText(String.valueOf(Double.parseDouble(textConvertedDollar.getText().toString())+Double.parseDouble(textConvertedDollar.getText().toString()) * Double.parseDouble(editCommission.getText().toString())/100));
+                        }
+                        if(editEuro.getText().length()>0){
+                            textDollarWc.setText(String.valueOf(Double.parseDouble(textConvertedEuro.getText().toString())+Double.parseDouble(textConvertedEuro.getText().toString())  * Double.parseDouble(editCommission.getText().toString())/100));
+                        }
+                    }
+
                 }else{
                     textWc.setVisibility(View.INVISIBLE);
                     textEuroWc.setVisibility(View.INVISIBLE);
@@ -134,3 +192,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

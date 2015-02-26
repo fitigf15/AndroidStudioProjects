@@ -53,6 +53,12 @@
             android:id="@+id/editEuro"/>
         <TextView
             android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/textConvertedEuro" />
+        <TextView
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:id="@+id/textEuroWc" />
@@ -77,7 +83,13 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
-            android:id="@+id/editDollar"/>
+            android:id="@+id/editDollar" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/textConvertedDollar" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
