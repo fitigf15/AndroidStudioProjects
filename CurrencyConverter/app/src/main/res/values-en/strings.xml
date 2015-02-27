@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CurrencyConverter</string>
+    <string name="app_name">Currency Converter</string>
     <string name="euro">EUR(€)</string>
     <string name="dollar">USD($)</string>
     <string name="commission">Apply Commission(%)</string>
-    <string name="title">Currency converter</string>
+    <string name="title">Currency Converter</string>
     <string name="action_settings">Settings</string>
     <string name="currency">Currency</string>
     <string name="wc">With Commission</string>

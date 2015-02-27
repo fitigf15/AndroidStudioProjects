@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -29,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
         final EditText editEuro = (EditText) findViewById(R.id.editEuro);
         final EditText editCommission = (EditText) findViewById(R.id.editCommission);
         final CheckBox checkCommission = (CheckBox) findViewById(R.id.checkCommission);
-
+        final Switch switchEuroUsd = (Switch) findViewById(R.id.switchEurUsd);
         editEuro.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length()==0){
+                if(s.length()==0 || !checkCommission.isChecked()){
                     textEuroWc.setVisibility(View.GONE);
                     textEuroWc.setText("", TextView.BufferType.EDITABLE);
                     textDollarWc.setVisibility(View.GONE);
@@ -102,14 +103,14 @@ public class MainActivity extends ActionBarActivity {
 
                     textEuroWc.setVisibility(View.VISIBLE);
                     textDollarWc.setVisibility(View.VISIBLE);
-                    if(textConvertedEuro.getText().toString().matches("")){
+                    if(textConvertedEuro.getText().length()==0){
                         textEuroWc.setText("");
 
                     }else{
                         textEuroWc.setText(String.valueOf(Double.parseDouble(textConvertedEuro.getText().toString())+Double.parseDouble(textConvertedEuro.getText().toString()) * Double.parseDouble(editCommission.getText().toString())/100));
 
                     }
-                    if(textConvertedDollar.getText().toString().matches("")){
+                    if(textConvertedDollar.getText().length()==0){
                         textDollarWc.setText("");
                     }else{
                         textDollarWc.setText(String.valueOf(Double.parseDouble(textConvertedDollar.getText().toString())+Double.parseDouble(textConvertedDollar.getText().toString())* Double.parseDouble(editCommission.getText().toString())/100));
@@ -119,6 +120,7 @@ public class MainActivity extends ActionBarActivity {
 
 
                 }
+
 
             }
 
@@ -132,24 +134,27 @@ public class MainActivity extends ActionBarActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     editCommission.setVisibility(View.VISIBLE);
-                    if(!editCommission.getText().toString().matches("")){
+                    editCommission.requestFocus();
+                    if(editCommission.getText().length()==0){
+                        textEuroWc.setVisibility(View.GONE);
+                        textEuroWc.setText("", TextView.BufferType.EDITABLE);
+                        textDollarWc.setVisibility(View.GONE);
+                        textDollarWc.setText("", TextView.BufferType.EDITABLE);
+                    }else{
                         textEuroWc.setVisibility(View.VISIBLE);
                         textDollarWc.setVisibility(View.VISIBLE);
-                        if(textConvertedEuro.getText().toString().matches("")){
+                        if(textConvertedEuro.getText().length()==0){
                             textEuroWc.setText("");
 
                         }else{
                             textEuroWc.setText(String.valueOf(Double.parseDouble(textConvertedEuro.getText().toString())+Double.parseDouble(textConvertedEuro.getText().toString()) * Double.parseDouble(editCommission.getText().toString())/100));
 
                         }
-                        if(textConvertedDollar.getText().toString().matches("")){
+                        if(textConvertedDollar.getText().length()==0){
                             textDollarWc.setText("");
                         }else{
                             textDollarWc.setText(String.valueOf(Double.parseDouble(textConvertedDollar.getText().toString())+Double.parseDouble(textConvertedDollar.getText().toString())* Double.parseDouble(editCommission.getText().toString())/100));
-
-
                         }
-
                     }
 
                 }else{
@@ -158,15 +163,32 @@ public class MainActivity extends ActionBarActivity {
                     textDollarWc.setVisibility(View.GONE);
                     textDollarWc.setText("", TextView.BufferType.EDITABLE);
                     editCommission.setVisibility(View.GONE);
+
+
+                }
+            }
+        });
+        switchEuroUsd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    editEuro.clearFocus();
+                    editDollar.requestFocus();
+
+                }else{
+                    editDollar.clearFocus();
+                    editEuro.requestFocus();
                 }
             }
         });
 
         editEuro.setText("1", TextView.BufferType.EDITABLE);
         editDollar.setText("1", TextView.BufferType.EDITABLE);
+        editCommission.setText("10", TextView.BufferType.EDITABLE);
 
 
     }
+
 
 
     @Override
