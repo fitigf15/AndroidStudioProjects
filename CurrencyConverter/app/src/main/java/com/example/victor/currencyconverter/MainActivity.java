@@ -16,21 +16,24 @@ import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
-    private double m_euroValue = 1.13;
+    private double m_euroValue = 1.13; // will determine the euro-dollar conversion, counting the Dollar as 1 and the Euro as 1.13
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView textEuroWc = (TextView) findViewById(R.id.textEuroWc);
-        final TextView textDollarWc = (TextView) findViewById(R.id.textDollarWc);
-        final TextView textConvertedDollar = (TextView) findViewById(R.id.textConvertedDollar);
-        final TextView textConvertedEuro = (TextView) findViewById(R.id.textConvertedEuro);
-        final EditText editDollar = (EditText) findViewById(R.id.editDollar);
-        final EditText editEuro = (EditText) findViewById(R.id.editEuro);
-        final EditText editCommission = (EditText) findViewById(R.id.editCommission);
-        final CheckBox checkCommission = (CheckBox) findViewById(R.id.checkCommission);
-        final Switch switchEuroUsd = (Switch) findViewById(R.id.switchEurUsd);
+        final TextView textEuroWc = (TextView) findViewById(R.id.textEuroWc); // will contain the converted value from Dollar to Euro applying a commission
+        final TextView textDollarWc = (TextView) findViewById(R.id.textDollarWc); // will contain the converted value from Euro to Dollar applying a commission
+        final TextView textConvertedDollar = (TextView) findViewById(R.id.textConvertedDollar); // will contain the converted value from Euro to Dollar
+        final TextView textConvertedEuro = (TextView) findViewById(R.id.textConvertedEuro); // will contain the converted value from Dollar to Euro
+        final EditText editDollar = (EditText) findViewById(R.id.editDollar); // will contain the value we want to convert from Dollar to Euro
+        final EditText editEuro = (EditText) findViewById(R.id.editEuro); // will contain the value we want to convert from Euro to Dollar
+        final EditText editCommission = (EditText) findViewById(R.id.editCommission); // will contain the commission we want to apply on the conversions
+        final CheckBox checkCommission = (CheckBox) findViewById(R.id.checkCommission); // will determine if we want to apply a commission or not on our conversions
+        final Switch switchEuroUsd = (Switch) findViewById(R.id.switchEurUsd); // will determine the focus on editEuro or editDollar
+
+        //listeners explained on the wiki
+
         editEuro.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -137,9 +140,9 @@ public class MainActivity extends ActionBarActivity {
                     editCommission.requestFocus();
                     if(editCommission.getText().length()==0){
                         textEuroWc.setVisibility(View.GONE);
-                        textEuroWc.setText("", TextView.BufferType.EDITABLE);
+                        textEuroWc.setText("");
                         textDollarWc.setVisibility(View.GONE);
-                        textDollarWc.setText("", TextView.BufferType.EDITABLE);
+                        textDollarWc.setText("");
                     }else{
                         textEuroWc.setVisibility(View.VISIBLE);
                         textDollarWc.setVisibility(View.VISIBLE);
@@ -159,9 +162,9 @@ public class MainActivity extends ActionBarActivity {
 
                 }else{
                     textEuroWc.setVisibility(View.GONE);
-                    textEuroWc.setText("", TextView.BufferType.EDITABLE);
+                    textEuroWc.setText("");
                     textDollarWc.setVisibility(View.GONE);
-                    textDollarWc.setText("", TextView.BufferType.EDITABLE);
+                    textDollarWc.setText("");
                     editCommission.setVisibility(View.GONE);
 
 
@@ -172,16 +175,14 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    editEuro.clearFocus();
                     editDollar.requestFocus();
 
                 }else{
-                    editDollar.clearFocus();
                     editEuro.requestFocus();
                 }
             }
         });
-
+        //some sample values for the user to let him get started with the app and let him know how does it work
         editEuro.setText("1", TextView.BufferType.EDITABLE);
         editDollar.setText("1", TextView.BufferType.EDITABLE);
         editCommission.setText("10", TextView.BufferType.EDITABLE);

@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_weight="1">
 
         <LinearLayout
             android:orientation="vertical"
@@ -27,7 +27,7 @@
                 android:id="@+id/textEuro"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 android:gravity="center" />
 
             <EditText
@@ -56,8 +56,7 @@
                     android:id="@+id/textConvertedEuro"
                     android:maxLength="10"
                     android:maxLines="1"
-                    android:gravity="center"
-                    android:numeric="decimal" />
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -67,7 +66,6 @@
                     android:maxLength="10"
                     android:maxLines="1"
                     android:gravity="center"
-                    android:numeric="decimal"
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
@@ -92,7 +90,7 @@
                 android:id="@+id/textEquals1"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="60dp"
+                android:textSize="60sp"
                 android:gravity="center" />
 
             <TextView
@@ -103,7 +101,7 @@
                 android:id="@+id/textEquals2"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="60dp" />
+                android:textSize="60sp" />
 
         </LinearLayout>
 
@@ -122,9 +120,8 @@
                 android:id="@+id/textDollar"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="40dp"
-                android:gravity="center"
-                android:numeric="decimal" />
+                android:textSize="40sp"
+                android:gravity="center" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -140,8 +137,7 @@
                     android:id="@+id/textConvertedDollar"
                     android:maxLines="1"
                     android:maxLength="10"
-                    android:gravity="center"
-                    android:numeric="decimal" />
+                    android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -151,7 +147,6 @@
                     android:maxLength="10"
                     android:maxLines="1"
                     android:gravity="center"
-                    android:numeric="decimal"
                     android:visibility="gone" />
             </LinearLayout>
 
@@ -190,10 +185,10 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/editCommission"
-            android:maxLines="10"
-            android:maxWidth="1dp"
+            android:maxLength="3"
             android:gravity="center"
             android:numeric="decimal"
+            android:maxLines="1"
             android:visibility="gone" />
     </LinearLayout>
 
